@@ -49,7 +49,7 @@ const RECOMMENDED: Record<string, string> = {
 };
 
 const VISUALIZERS = ["bars", "dots", "line", "mirror", "orbit", "peaks", "petals", "pulse", "twinWaves", "wave"];
-const TAB_BARS = ["capsule", "centre", "classic", "dock", "floating", "glass", "material", "minimal", "text", "underline"];
+const TAB_BARS = ["capsule", "classic", "dock", "floating", "glass", "material", "minimal", "text", "underline"];
 const DESKTOP_BARS = ["classic", "compact", "minimal"];
 const nice = (id: string) => (id === "twinWaves" ? "Twin waves" : id[0].toUpperCase() + id.slice(1));
 
@@ -331,7 +331,7 @@ export default async function Home() {
               Make it yours.
             </h2>
             <p className="body-large muted">
-              Ten visualizers, ten phone tab bars, three desktop bars, five player presets and thirteen themes. Pick one
+              Ten visualizers, nine phone tab bars, three desktop bars, five player presets and thirteen themes. Pick one
               and see it, straight from the app.
             </p>
           </header>
