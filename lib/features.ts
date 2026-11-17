@@ -84,6 +84,21 @@ export const AREAS: Area[] = [
         where: "Native apps",
       },
       {
+        name: "Local title matching",
+        what: "Recognizes bilingual titles such as きゃぴ Kyapi and Kyapi, formatting differences and small typos, with artist, duration and recording checks.",
+        where: "Native apps",
+      },
+      {
+        name: "Network proxy",
+        what: "Optional HTTP proxy for app HTTP requests and yt-dlp, with domain bypass rules. Local devices stay direct; server cooldowns still apply.",
+        where: "Native apps",
+      },
+      {
+        name: "Source verification",
+        what: "Opens a provider's verification page when needed and retries the waiting downloads after a successful grant. Session expiry is controlled by the provider.",
+        where: "Native apps",
+      },
+      {
         name: "SpotiFLAC extensions",
         what: "Install .sflx extensions; each provider becomes a Search filter with its own settings and downloads.",
         where: "Native apps",
