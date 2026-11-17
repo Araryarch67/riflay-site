@@ -2191,7 +2191,7 @@ html[data-os="ios"] .install[data-os="ios"] .install__head::after {
   background: var(--md-surface);
   cursor: pointer;
   /* Without JavaScript it gets out of the way by itself. */
-  animation: splash-gone 400ms 3s forwards;
+  animation: splash-gone 300ms 1.4s forwards;
 }
 .no-splash .splash {
   display: none;

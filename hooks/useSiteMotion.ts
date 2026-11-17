@@ -22,7 +22,7 @@ export function useSiteMotion() {
     preference.addEventListener("change", update);
     window.addEventListener("riflay:intro-end", revealHero);
     if (!root.classList.contains("splash-on")) revealHero();
-    const introFallback = window.setTimeout(revealHero, 3800);
+    const introFallback = window.setTimeout(revealHero, 2000);
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries)

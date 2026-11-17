@@ -5,8 +5,8 @@ import { useEffect, useRef } from "react";
 /*
  * The app's launch intro, rebuilt from lib/ui/widgets/desktop_intro.dart: the mark's four pieces are drawn by a pen
  * with a glowing orange tip, one after another, then filled in; at the impact the mark punches (a damped spring)
- * and sends out a shock ring and its echo; a glint sweeps it; then it zooms out of the way. About 2.25 s, the same
- * timeline in milliseconds. A click or any key skips to the end. Shown once per visit (sessionStorage), never with
+ * and sends out a shock ring and its echo; a glint sweeps it; then it zooms out of the way. The app's timeline (in
+ * milliseconds below), played at [SPEED]: about 1.1 s, so the page shows sooner. A click or any key skips to the end. Shown once per visit (sessionStorage), never with
  * reduced motion; the overlay is in the server HTML, so the page never flashes before it.
  */
 
@@ -35,6 +35,9 @@ const HOLD = 1900,
 const PEN = 20;
 const MARK = 716; // the mark's width in design units; rings are sized from it as the app sizes them from 150 px
 const ORANGE = "#FF7A1A";
+
+/** How much faster than the app the intro plays: the same motion, out of the page's way in half the time. */
+const SPEED = 2;
 
 const seg = (ms: number, a: number, b: number) =>
   Math.min(1, Math.max(0, (ms - a) / (b - a)));
@@ -75,7 +78,7 @@ export function Splash() {
     let finished = false;
 
     const frame = (now: number) => {
-      const ms = now - start;
+      const ms = (now - start) * SPEED;
       // Pieces: outline by pen, then fill in as the outline fades.
       PIECES.forEach((_, i) => {
         const drawn = easeInOutCubic(
@@ -159,13 +162,13 @@ export function Splash() {
 
     // A click or any key skips to the held, finished mark.
     const skip = () => {
-      const ms = performance.now() - start;
-      if (ms < HOLD) start = performance.now() - HOLD;
+      const ms = (performance.now() - start) * SPEED;
+      if (ms < HOLD) start = performance.now() - HOLD / SPEED;
     };
     el.addEventListener("pointerdown", skip);
     window.addEventListener("keydown", skip);
     raf = requestAnimationFrame(frame);
-    const failsafe = window.setTimeout(done, END + 1500);
+    const failsafe = window.setTimeout(done, END / SPEED + 1500);
 
     return () => {
       cancelAnimationFrame(raf);
