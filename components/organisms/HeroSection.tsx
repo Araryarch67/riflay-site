@@ -74,7 +74,6 @@ export function HeroSection({ release }: { release: Release }) {
               width={800}
               height={1720}
               alt="Riflay's player on a phone"
-              priority
             />
           </figure>
         )}

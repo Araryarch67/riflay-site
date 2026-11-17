@@ -11,10 +11,13 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
   variable: "--font-space-grotesk",
 });
+// Only the install commands use it, further down the page: not preloaded, so it doesn't take a slow connection's
+// bandwidth from the first screen (the hero screenshot).
 const robotoMono = Roboto_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-roboto-mono",
+  preload: false,
 });
 
 // Material Symbols Rounded, only the icons the page uses (scripts/fetch-symbols.mjs makes the file), served from
