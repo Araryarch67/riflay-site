@@ -15,10 +15,51 @@ export const IS_PREVIEW = process.env.VERCEL_ENV === "preview";
 export const SITE_TITLE = "Riflay — Free, open-source hi-fi music player";
 export const SITE_DESCRIPTION =
   "Play local music and YouTube Music together with Riflay. Free and open source, with lossless audio, synced lyrics, music videos and customizable player presets.";
+/** What people search for to find an app like this: honest terms the page itself is about, nothing stuffed. */
+export const SITE_KEYWORDS = [
+  "Riflay",
+  "music player",
+  "open source music player",
+  "hi-fi music player",
+  "lossless music player",
+  "FLAC player",
+  "YouTube Music desktop app",
+  "YouTube Music client",
+  "local music player",
+  "synced lyrics",
+  "karaoke lyrics",
+  "music videos",
+  "bit-perfect audio",
+  "equalizer",
+  "Windows music player",
+  "macOS music player",
+  "Linux music player",
+  "Android music player",
+];
+
+/** What the app does, as structured data reads it (each one shown on the page). */
+export const FEATURE_LIST = [
+  "Smart merge: YouTube Music songs with lossless FLAC of the same recording",
+  "Local library with lossless and hi-res playback",
+  "Synced and word-by-word karaoke lyrics",
+  "Music videos in the player",
+  "Desktop mini player and dynamic island",
+  "Equalizer, crossfade, bit-perfect output and virtual speakers",
+  "Listen together",
+  "Downloads and library tools",
+  "Player presets and Material 3 customization",
+];
+
+/** IndexNow's key: the file of that name in public/ proves the site is ours (scripts/indexnow.mjs). */
+export const INDEXNOW_KEY = "fb4928981ca0b2563383a733bb6493ea";
+
 export const siteMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: SITE_TITLE, template: "%s | Riflay" },
   description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  authors: [{ name: "Araryarch67", url: "https://github.com/Araryarch67" }],
+  publisher: "Araryarch67",
   applicationName: "Riflay",
   category: "music",
   creator: "Araryarch67",
@@ -85,6 +126,10 @@ export function buildStructuredData(release: Release) {
         description: SITE_DESCRIPTION,
         applicationCategory: "MultimediaApplication",
         operatingSystem: "Windows, macOS, Linux, Android, iOS",
+        featureList: FEATURE_LIST,
+        keywords: SITE_KEYWORDS.join(", "),
+        author: { "@type": "Person", name: "Araryarch67", url: "https://github.com/Araryarch67" },
+        ...(release.date ? { datePublished: release.date } : {}),
         softwareVersion: release.version,
         isAccessibleForFree: true,
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
