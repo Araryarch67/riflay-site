@@ -48,15 +48,23 @@ const RECOMMENDED: Record<string, string> = {
   ios: "Riflay-ios-unsigned.ipa",
 };
 
-const VISUALIZERS = ["bars", "dots", "line", "mirror", "orbit", "peaks", "petals", "pulse", "twinWaves", "wave"];
-const TAB_BARS = ["capsule", "classic", "dock", "floating", "glass", "material", "minimal", "text", "underline"];
-const DESKTOP_BARS = ["classic", "compact", "minimal"];
-const nice = (id: string) => (id === "twinWaves" ? "Twin waves" : id[0].toUpperCase() + id.slice(1));
+// Exactly what the app's option menus offer, with their names and in their order (Settings › Pages & navigation
+// and Now Playing, Riflay 1.6.2). The key is the screenshot's name.
+const VISUALIZERS: [string, string][] = [
+  ["wave", "Wave"], ["bars", "Bars"], ["line", "Line"], ["dots", "Dots"], ["mirror", "Mirror"],
+  ["twinWaves", "Twin waves"], ["pulse", "Pulse"], ["orbit", "Orbit"], ["petals", "Petals"], ["peaks", "Peaks"],
+];
+const TAB_BARS: [string, string][] = [
+  ["classic", "Classic"], ["material", "Material"], ["underline", "Underline"], ["minimal", "Minimal"],
+  ["text", "Text only"], ["floating", "Floating"], ["capsule", "Capsule"], ["dock", "Dock"],
+  ["centre", "Centre button"], ["glass", "Liquid glass"],
+];
+const DESKTOP_BARS: [string, string][] = [["classic", "Classic"], ["compact", "Compact"], ["minimal", "Minimal"]];
 
 const STYLE_SETS: StyleSet[] = [
-  { id: "visualizer", label: "Visualizer", phone: true, styles: VISUALIZERS.map((v) => ({ id: v, name: nice(v), src: `visualizer-phone-${v}` })) },
-  { id: "tabbar", label: "Phone tab bar", phone: true, styles: TAB_BARS.map((v) => ({ id: v, name: nice(v), src: `phone-bar-${v}` })) },
-  { id: "desktopbar", label: "Desktop player bar", styles: DESKTOP_BARS.map((v) => ({ id: v, name: nice(v), src: `desktop-bar-${v}` })) },
+  { id: "visualizer", label: "Visualizer", phone: true, styles: VISUALIZERS.map(([id, name]) => ({ id, name, src: `visualizer-phone-${id}` })) },
+  { id: "tabbar", label: "Tab bar on phones", phone: true, styles: TAB_BARS.map(([id, name]) => ({ id, name, src: `phone-bar-${id}` })) },
+  { id: "desktopbar", label: "Desktop player bar", styles: DESKTOP_BARS.map(([id, name]) => ({ id, name, src: `desktop-bar-${id}` })) },
 ];
 
 const MARQUEE = [
@@ -331,7 +339,7 @@ export default async function Home() {
               Make it yours.
             </h2>
             <p className="body-large muted">
-              Ten visualizers, nine phone tab bars, three desktop bars, five player presets and thirteen themes. Pick one
+              Ten visualizers, ten phone tab bars, three desktop bars, five player presets and thirteen themes. Pick one
               and see it, straight from the app.
             </p>
           </header>
