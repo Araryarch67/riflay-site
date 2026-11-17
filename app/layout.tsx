@@ -21,14 +21,16 @@ const robotoMono = Roboto_Mono({
 });
 
 // Material Symbols Rounded, only the icons the page uses (scripts/fetch-symbols.mjs makes the file), served from
-// this site and preloaded: a stylesheet from fonts.googleapis.com blocked the first paint (~0.5 s). `block`: an
+// this site: a stylesheet from fonts.googleapis.com blocked the first paint (~0.5 s). `block`: an
 // icon's name never shows as text while the font loads.
 const symbols = localFont({
   src: "./fonts/material-symbols-rounded.woff2",
   weight: "400 600",
   display: "block",
   variable: "--font-symbols",
-  preload: true,
+  // Not preloaded: the icons aren't the first screen's largest paint, and a preload took a slow connection's
+  // bandwidth from the hero screenshot. It still comes with the page's CSS, before the icons are needed.
+  preload: false,
 });
 
 // Runs before paint: restores the saved theme and seed colour, turns on scroll reveals, and skips the intro
