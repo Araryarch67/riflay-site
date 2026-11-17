@@ -1,0 +1,23 @@
+:root {
+  --image-radius: 2px;
+}
+img {
+  border-radius: var(--image-radius) !important;
+}
+.hero__shot,
+.hero__phone,
+.story__frame,
+.story__inline,
+.picker__frame,
+.picker--phone .picker__frame,
+.preset-showcase__frame,
+.phones__item,
+.gallery__item .gallery__frame,
+.gallery__item--phone .gallery__frame,
+.island-stage__screen {
+  border-radius: var(--image-radius);
+}
+.hero__phone {
+  border: 0;
+  overflow: visible;
+}

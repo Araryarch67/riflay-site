@@ -1,0 +1,59 @@
+/* Real player presets, captured from Riflay with a made-up local song. */
+.preset-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 64px);
+  padding: clamp(20px, 4vw, 48px);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: var(--shape-xl);
+  background: var(--md-surface-container-low);
+}
+.preset-showcase__copy {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.preset-showcase__preview {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin: 0;
+  min-width: 0;
+}
+.preset-showcase__frame {
+  position: relative;
+  width: min(100%, 320px);
+  aspect-ratio: 400 / 860;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+}
+.preset-showcase__frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity var(--dur-medium) var(--ease-emphasized);
+}
+.preset-showcase__frame img.is-active {
+  opacity: 1;
+}
+.preset-showcase__preview figcaption {
+  color: var(--md-on-surface-variant);
+  font-size: 14px;
+}
+@media (max-width: 899px) {
+  .preset-showcase {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .preset-showcase__frame {
+    width: min(100%, 260px);
+  }
+  .preset-details {
+    min-height: 190px;
+  }
+}

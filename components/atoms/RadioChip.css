@@ -1,0 +1,28 @@
+.radio-chip {
+  position: relative;
+  cursor: pointer;
+}
+.radio-chip input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.radio-chip .fchip {
+  height: 40px;
+  padding: 0 16px;
+}
+.radio-chip input:checked + .fchip {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+  border-color: transparent;
+  border-radius: var(--shape-md);
+}
+.radio-chip input:focus-visible + .fchip {
+  outline: 3px solid var(--md-primary);
+  outline-offset: 3px;
+}

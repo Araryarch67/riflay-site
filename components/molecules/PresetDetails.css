@@ -1,0 +1,26 @@
+.preset-details {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 210px;
+}
+.preset-details__traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.preset-details__traits li {
+  padding: 6px 10px;
+  border-radius: var(--shape-sm);
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant);
+  font-size: 13px;
+  line-height: 20px;
+}
+.preset-details__copy {
+  display: grid;
+  gap: 12px;
+}

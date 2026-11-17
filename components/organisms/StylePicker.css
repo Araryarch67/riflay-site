@@ -1,0 +1,101 @@
+/* ---- Make it yours: pick a style, see it ---- */
+.picker {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+.picker--phone {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+}
+.picker__controls {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+.style-picker {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+.picker__categories {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(100%, 640px);
+  justify-self: start;
+}
+.picker__categories button {
+  min-width: 0;
+  height: auto;
+  min-height: 48px;
+  padding: 12px;
+  white-space: normal;
+  text-wrap: balance;
+}
+.picker__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.picker__stage {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  margin: 0;
+  min-width: 0;
+}
+.picker:not(.picker--phone) {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.picker:not(.picker--phone) .picker__frame {
+  width: 100%;
+  max-width: none;
+}
+.picker__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1440 / 900;
+  border-radius: var(--shape-xl);
+  overflow: hidden;
+  border: 1px solid var(--md-outline-variant);
+  background: var(--md-surface-container);
+}
+.picker--phone .picker__frame {
+  width: min(100%, 320px);
+  aspect-ratio: 800 / 1720;
+  border-radius: 0;
+  border: 0;
+  overflow: visible;
+  background: transparent;
+}
+.picker__frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity var(--dur-medium) var(--ease-emphasized);
+}
+.picker__frame img.is-active {
+  opacity: 1;
+}
+.picker__stage figcaption {
+  font-size: 14px;
+  color: var(--md-on-surface-variant);
+}
+.picker__stage figcaption b {
+  color: var(--md-on-surface);
+  font-weight: 500;
+}
+
+@media (max-width: 899px) {
+  .picker,
+  .picker--phone {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .picker--phone .picker__stage {
+    order: 2;
+  }
+}

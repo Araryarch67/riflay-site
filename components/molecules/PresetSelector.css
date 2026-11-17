@@ -1,0 +1,13 @@
+.preset-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.preset-selector legend {
+  padding: 0 0 12px;
+  color: var(--md-on-surface-variant);
+}

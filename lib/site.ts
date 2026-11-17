@@ -3,7 +3,8 @@ export const APP_VERSION = "1.6.3";
 
 export const REPO = "https://github.com/Araryarch67/Riflay";
 export const LATEST_RELEASE = `${REPO}/releases/latest`;
-export const SCOOP_ADD = "scoop bucket add riflay https://github.com/Araryarch67/scoop-riflay";
+export const SCOOP_ADD =
+  "scoop bucket add riflay https://github.com/Araryarch67/scoop-riflay";
 export const SCOOP_INSTALL = "scoop install riflay/riflay";
 export const BREW_INSTALL = "brew install --cask araryarch67/riflay/riflay";
 export const SUPPORT = "https://tako.id/ararya/gift";
