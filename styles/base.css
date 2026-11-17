@@ -1057,8 +1057,6 @@ html[data-os="ios"] .filter-chip[data-os="ios"] {
   scroll-snap-type: x mandatory;
   padding: 4px var(--gutter) 16px;
   scroll-padding-inline: var(--gutter);
-  scrollbar-width: thin;
-  scrollbar-color: var(--md-outline-variant) transparent;
 }
 @media (min-width: 1224px) {
   .carousel {
@@ -2518,4 +2516,13 @@ html[data-os="ios"] .install[data-os="ios"] .install__head::after {
     opacity: 1;
     transform: none;
   }
+}
+
+/* No scrollbars anywhere: the page and every strip still scroll (wheel, touch, keyboard, trackpad), they just
+   don't draw a bar. */
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
