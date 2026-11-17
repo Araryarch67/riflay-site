@@ -30,6 +30,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // The page's CSS (~13 KB) goes into the HTML: no request of its own before the first paint, a round trip less on
+  // a slow phone connection.
+  experimental: { inlineCss: true },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
