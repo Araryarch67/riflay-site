@@ -49,7 +49,7 @@ const RECOMMENDED: Record<string, string> = {
 };
 
 // Exactly what the app's option menus offer, with their names and in their order (Settings › Pages & navigation
-// and Now Playing, Riflay 1.6.2). The key is the screenshot's name.
+// and Now Playing, Riflay 1.6.3). The key is the screenshot's name.
 const VISUALIZERS: [string, string][] = [
   ["wave", "Wave"], ["bars", "Bars"], ["line", "Line"], ["dots", "Dots"], ["mirror", "Mirror"],
   ["twinWaves", "Twin waves"], ["pulse", "Pulse"], ["orbit", "Orbit"], ["petals", "Petals"], ["peaks", "Peaks"],
@@ -57,7 +57,7 @@ const VISUALIZERS: [string, string][] = [
 const TAB_BARS: [string, string][] = [
   ["classic", "Classic"], ["material", "Material"], ["underline", "Underline"], ["minimal", "Minimal"],
   ["text", "Text only"], ["floating", "Floating"], ["capsule", "Capsule"], ["dock", "Dock"],
-  ["centre", "Centre button"], ["glass", "Liquid glass"],
+  ["glass", "Liquid glass"],
 ];
 const DESKTOP_BARS: [string, string][] = [["classic", "Classic"], ["compact", "Compact"], ["minimal", "Minimal"]];
 
@@ -339,7 +339,7 @@ export default async function Home() {
               Make it yours.
             </h2>
             <p className="body-large muted">
-              Ten visualizers, ten phone tab bars, three desktop bars, five player presets and thirteen themes. Pick one
+              {VISUALIZERS.length} visualizers, {TAB_BARS.length} phone tab bars, {DESKTOP_BARS.length} desktop bars, five player presets and thirteen themes. Pick one
               and see it, straight from the app.
             </p>
           </header>

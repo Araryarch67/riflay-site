@@ -1,5 +1,5 @@
 /** Riflay's current release, as the app's `lib/app_version.dart` names it. Bump with each release. */
-export const APP_VERSION = "1.6.2";
+export const APP_VERSION = "1.6.3";
 
 export const REPO = "https://github.com/Araryarch67/Riflay";
 export const LATEST_RELEASE = `${REPO}/releases/latest`;
