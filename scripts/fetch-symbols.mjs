@@ -16,6 +16,7 @@ const ICONS = [
   "devices",
   "download",
   "equalizer",
+  "expand_less",
   "expand_more",
   "graphic_eq",
   "group",

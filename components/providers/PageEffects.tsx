@@ -47,6 +47,33 @@ export function PageEffects() {
       if (button && href) button.href = href;
     }
 
+    // Links to other sites (Tako, GitHub, AltStore...) open in a new tab, so the page stays where it was; a file
+    // straight from a release downloads in place. Links added later (another install tab) are marked too.
+    const markLinks = (scope: ParentNode) =>
+      scope.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((a) => {
+        let url: URL;
+        try {
+          url = new URL(a.href, location.href);
+        } catch {
+          return;
+        }
+        const external = /^https?:$/.test(url.protocol) && url.host !== location.host;
+        const file = /\/releases\/(latest\/)?download\//.test(url.pathname);
+        if (external && !file) {
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+        } else if (a.target === "_blank") {
+          a.removeAttribute("target");
+        }
+      });
+    markLinks(document);
+    const links = new MutationObserver((changes) => {
+      for (const c of changes)
+        if (c.type === "attributes") markLinks(c.target.parentNode ?? document);
+        else c.addedNodes.forEach((n) => n instanceof Element && markLinks(n.parentNode ?? n));
+    });
+    links.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["href"] });
+
     const reveals = document.querySelectorAll<HTMLElement>(".reveal");
     const io = new IntersectionObserver(
       (entries) => {
@@ -57,7 +84,9 @@ export function PageEffects() {
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      // Shown once its top comes on screen: a share of its height (8% was) never shows on a phone for a section
+      // taller than the screen many times over (the feature list, ~10,000 px there stayed hidden).
+      { rootMargin: "0px 0px -8% 0px", threshold: 0 },
     );
     reveals.forEach((el) => io.observe(el));
 
@@ -75,6 +104,7 @@ export function PageEffects() {
     }
 
     return () => {
+      links.disconnect();
       io.disconnect();
       heroIo?.disconnect();
     };

@@ -4,10 +4,15 @@ import { useMemo, useState } from "react";
 import { AREAS } from "@/lib/features";
 import { Icon } from "@/components/atoms/Icon";
 
+/** On a phone, how many of an area's features show before "Show all". */
+const FIRST = 3;
+
 /** Every feature Riflay has, by area: M3 filter chips, a search field, and one card per area. */
 export function FeatureCatalog() {
   const [area, setArea] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  // Areas opened past their first few features (phones show [FIRST] of each until opened).
+  const [open, setOpen] = useState<Set<string>>(new Set());
 
   const shown = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -26,6 +31,8 @@ export function FeatureCatalog() {
   }, [area, query]);
 
   const count = shown.reduce((n, a) => n + a.features.length, 0);
+  // Searching or picking an area shows every match: nothing to open.
+  const narrowed = query.trim() !== "" || area !== null;
 
   return (
     <div className="catalog">
@@ -81,7 +88,11 @@ export function FeatureCatalog() {
 
       <div className="catalog__grid">
         {shown.map((a) => (
-          <section key={a.id} className="area" aria-labelledby={`area-${a.id}`}>
+          <section
+            key={a.id}
+            className={`area${!narrowed && !open.has(a.id) && a.features.length > FIRST ? " area--short" : ""}`}
+            aria-labelledby={`area-${a.id}`}
+          >
             <header className="area__head">
               <Icon name={a.icon} />
               <h3 id={`area-${a.id}`} className="title-large">
@@ -98,6 +109,24 @@ export function FeatureCatalog() {
                 </li>
               ))}
             </ul>
+            {!narrowed && a.features.length > FIRST && (
+              <button
+                type="button"
+                className="area__more"
+                aria-expanded={open.has(a.id)}
+                onClick={() =>
+                  setOpen((was) => {
+                    const next = new Set(was);
+                    if (next.has(a.id)) next.delete(a.id);
+                    else next.add(a.id);
+                    return next;
+                  })
+                }
+              >
+                {open.has(a.id) ? "Show less" : `Show all ${a.features.length}`}
+                <Icon name={open.has(a.id) ? "expand_less" : "expand_more"} />
+              </button>
+            )}
           </section>
         ))}
         {shown.length === 0 && (

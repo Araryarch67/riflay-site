@@ -2386,6 +2386,58 @@ html[data-os="ios"] .install[data-os="ios"] .install__head::after {
 .catalog__empty {
   padding: 24px 0;
 }
+/* "Show all N": phones only (a computer shows every feature). */
+.area__more {
+  display: none;
+}
+@media (max-width: 599px) {
+  /* One row of area chips that scrolls sideways, not six rows of them. */
+  .catalog__chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scroll-padding-inline: var(--gutter);
+    scroll-snap-type: x proximity;
+  }
+  .catalog__chips .fchip {
+    flex: none;
+    scroll-snap-align: start;
+  }
+  .search {
+    max-width: none;
+  }
+  .area {
+    padding: 16px 16px 4px;
+    border-radius: var(--shape-lg);
+  }
+  .area__list li {
+    padding: 12px 0;
+  }
+  .area--short .area__list li:nth-child(n + 4) {
+    display: none;
+  }
+  .area--short .area__list li:nth-child(3) {
+    border-bottom: 0;
+  }
+  .area__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 4px 0 12px;
+    padding: 10px 16px 10px 20px;
+    border: 1px solid var(--md-outline-variant);
+    border-radius: var(--shape-full);
+    background: transparent;
+    color: var(--md-primary);
+    font: 500 14px/20px var(--font);
+    cursor: pointer;
+  }
+  .area__more:focus-visible {
+    outline: 2px solid var(--md-primary);
+    outline-offset: 2px;
+  }
+}
 .linkish {
   background: none;
   border: 0;
