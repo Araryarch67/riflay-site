@@ -27,9 +27,8 @@ export function SiteFooter({ release }: { release: Release }) {
           Screenshots show a made-up library.
         </p>
       </div>
-      <p className="footer__mark" aria-hidden="true">
-        Riflay
-      </p>
+      {/* A faint watermark, drawn by CSS (::before): decoration, not text to read. */}
+      <p className="footer__mark" aria-hidden="true" data-mark="Riflay" />
     </footer>
   );
 }

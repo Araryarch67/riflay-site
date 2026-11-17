@@ -4,6 +4,7 @@ import { MotionText } from "@/components/atoms/MotionText";
 import { useEffect, useRef, useState } from "react";
 
 import type { StoryItem } from "@/lib/types";
+import { SCREEN_SIZES, screenSrcSet } from "@/lib/screens";
 
 /**
  * Scrollytelling: on wide screens the screenshot frame stays put while the features scroll past it, and it
@@ -42,6 +43,8 @@ export function FeatureStory({
               <img
                 key={it.id}
                 src={`/screens/${it.shot}.webp`}
+                srcSet={screenSrcSet(it.shot)}
+                sizes={SCREEN_SIZES}
                 width={1440}
                 height={900}
                 alt=""
@@ -81,6 +84,8 @@ export function FeatureStory({
               <figure className="story__inline">
                 <img
                   src={`/screens/${it.shot}.webp`}
+                  srcSet={screenSrcSet(it.shot)}
+                  sizes={SCREEN_SIZES}
                   width={1440}
                   height={900}
                   alt={it.alt}

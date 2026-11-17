@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 
 import type { GalleryShot } from "@/lib/types";
+import { SCREEN_SIZES, screenSrcSet } from "@/lib/screens";
 
 /**
  * A pinned horizontal gallery: the section sticks to the screen while scrolling down moves the track sideways,
@@ -114,6 +115,8 @@ export function HorizontalGallery({
                 <div className="gallery__frame">
                   <img
                     src={`/screens/${s.src}.webp`}
+                    srcSet={screenSrcSet(s.src)}
+                    sizes={SCREEN_SIZES}
                     width={s.phone ? 800 : 1440}
                     height={s.phone ? 1720 : 900}
                     alt={s.caption}

@@ -214,7 +214,7 @@ ol {
 }
 
 .ms {
-  font-family: "Material Symbols Rounded";
+  font-family: var(--font-symbols), "Material Symbols Rounded";
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -1851,6 +1851,9 @@ html[data-os="ios"] .install[data-os="ios"] .install__head::after {
     transparent
   );
 }
+.footer__mark::before {
+  content: attr(data-mark);
+}
 .footer__mark {
   font-size: clamp(96px, 27vw, 420px);
   line-height: 0.78;
@@ -2273,7 +2276,8 @@ html[data-os="ios"] .install[data-os="ios"] .install__head::after {
 .fchip:hover::after {
   opacity: 0.08;
 }
-.fchip[aria-pressed="true"] {
+.fchip[aria-pressed="true"],
+.fchip[aria-checked="true"] {
   background: var(--md-secondary-container);
   color: var(--md-on-secondary-container);
   border-color: transparent;

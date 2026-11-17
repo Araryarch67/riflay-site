@@ -35,7 +35,6 @@ export function StylePicker({ sets }: { sets: StyleSet[] }) {
                 role="radio"
                 className="fchip"
                 aria-checked={style.id === current.id}
-                aria-pressed={style.id === current.id}
                 onClick={() =>
                   setPicked((previous) => ({ ...previous, [set.id]: style.id }))
                 }

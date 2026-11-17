@@ -1,5 +1,6 @@
 import type { Viewport } from "next";
 import { Roboto_Mono, Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { siteMetadata } from "@/lib/seo";
 import { Splash } from "@/components/organisms/Splash";
@@ -16,53 +17,16 @@ const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
 });
 
-// Material Symbols subset to the icons the page uses; names must stay in alphabetical order.
-const ICONS = [
-  "android",
-  "arrow_forward",
-  "auto_awesome",
-  "brightness_auto",
-  "check",
-  "close",
-  "code",
-  "content_copy",
-  "dark_mode",
-  "desktop_windows",
-  "devices",
-  "download",
-  "equalizer",
-  "expand_more",
-  "graphic_eq",
-  "group",
-  "insights",
-  "laptop_mac",
-  "library_music",
-  "light_mode",
-  "lyrics",
-  "menu",
-  "merge",
-  "music_video",
-  "palette",
-  "open_in_full",
-  "pause",
-  "phone_iphone",
-  "picture_in_picture_alt",
-  "play_circle",
-  "repeat",
-  "schedule",
-  "search",
-  "shuffle",
-  "skip_next",
-  "skip_previous",
-  "speaker",
-  "terminal",
-  "touch_app",
-  "tune",
-  "volume_up",
-].sort();
-const SYMBOLS_URL =
-  "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..600,0..1,0" +
-  `&icon_names=${ICONS.join(",")}&display=block`;
+// Material Symbols Rounded, only the icons the page uses (scripts/fetch-symbols.mjs makes the file), served from
+// this site and preloaded: a stylesheet from fonts.googleapis.com blocked the first paint (~0.5 s). `block`: an
+// icon's name never shows as text while the font loads.
+const symbols = localFont({
+  src: "./fonts/material-symbols-rounded.woff2",
+  weight: "400 600",
+  display: "block",
+  variable: "--font-symbols",
+  preload: true,
+});
 
 // Runs before paint: restores the saved theme and seed colour, turns on scroll reveals, and skips the intro
 // (components/Splash.tsx) when it already played this visit or motion is reduced.
@@ -85,18 +49,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${robotoMono.variable}`}
+      className={`${spaceGrotesk.variable} ${robotoMono.variable} ${symbols.variable}`}
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: INIT }} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link rel="stylesheet" href={SYMBOLS_URL} />
       </head>
       <body>
         <Splash />
