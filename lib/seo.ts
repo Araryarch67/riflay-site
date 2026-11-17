@@ -3,9 +3,13 @@ import type { Release } from "./release";
 import { FAQ } from "./faq";
 import { REPO } from "./site";
 
-/** One public origin for every crawler-facing URL; previews never become canonical. */
+/**
+ * One public origin for every crawler-facing URL; previews never become canonical.
+ * It must be the origin that serves the page: the host sends riflay.my.id to www.riflay.my.id (308), and a
+ * canonical pointing at a redirect left the page unindexed ("Page with redirect" in Search Console).
+ */
 export const SITE_URL = new URL(
-  process.env.NEXT_PUBLIC_SITE_URL || "https://riflay.my.id",
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.riflay.my.id",
 ).origin;
 export const IS_PREVIEW = process.env.VERCEL_ENV === "preview";
 export const SITE_TITLE = "Riflay — Free, open-source hi-fi music player";
